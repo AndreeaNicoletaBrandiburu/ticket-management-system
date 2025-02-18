@@ -1,0 +1,78 @@
+**Ticket Management System - MVP Documentation**
+
+**1. Business Requirements**
+
+The following business requirements define the essential functionalities of the ticket management system:
+
+1. Users should be able to register and log in securely.
+2. Users can create new tickets with relevant details (title, description, category, status, etc.).
+3. Tickets should have different statuses such as "Open", "In Progress", and "Closed".
+4. Users should be able to comment on tickets for collaboration.
+5. Administrators should have the ability to manage all tickets.
+6. Tickets must belong to specific categories for better organization.
+7. Users should receive notifications for ticket updates.
+8. The system should provide a list of all tickets with filtering options.
+9. Only authorized users should be able to access ticket data.
+10. The system should provide an API for external integrations.
+
+**2. MVP Features**
+
+Based on the business requirements, the MVP will include the following key features:
+
+1. **User Authentication & Authorization**
+   - Secure registration and login using JWT authentication.
+   - Role-based access control (User/Admin).
+
+2. **Ticket Management**
+   - Users can create, view, update, and delete tickets.
+   - Tickets have a status workflow (Open, In Progress, Closed).
+
+3. **Comment System**
+   - Users can post and view comments on tickets.
+   - Comments are linked to specific tickets.
+
+4. **Notification System**
+   - Users receive notifications when a ticket is updated.
+
+5. **REST API with Swagger Documentation**
+   - The API follows OpenAPI standards and is documented with Swagger.
+   - Endpoints for users, tickets, and comments are available.
+
+**3. System Architecture**
+
+- **Backend:** Spring Boot (Java) with RESTful API.
+- **Database:** H2 (development)
+- **Security:** Spring Security with JWT Authentication.
+- **API Documentation:** Swagger UI.
+- **Testing:** JUnit and Mockito for unit and integration tests.
+- **Tools:** Maven for dependency management, Postman for API testing.
+
+**4. Entities and Relationships**
+
+| Entity      | Description                                           | Relations         |
+|------------|-------------------------------------------------------|-------------------|
+| User       | Stores user details and credentials                   | One-to-Many (Tickets, Comments) |
+| Ticket     | Represents a support issue or request                 | Many-to-One (User), One-to-Many (Comments) |
+| Comment    | User comments on tickets                              | Many-to-One (Ticket, User) |
+| Category   | Categorizes tickets                                   | One-to-Many (Tickets) |
+| Notification | Stores ticket-related alerts                         | Many-to-One (User, Ticket) |
+| Role       | Defines user roles (User/Admin)                        | One-to-Many (Users) |
+
+**5. Testing Strategy**
+
+- **Unit Tests:** Covers core business logic (services, repositories, controllers).
+- **Integration Tests:** Ensures API endpoints function correctly.
+- **Security Tests:** Validates authentication and authorization mechanisms.
+- **Manual Tests:** Performed using Postman for API and Swagger UI.
+
+**6. Deployment and Access**
+
+- The application is hosted locally for development.
+- Database access is enabled via H2 Console (`/h2-console`).
+- API is accessible at `http://localhost:8080/swagger-ui.html`.
+- Users can test the API using Postman.
+
+**7. Summary and Next Steps**
+
+This document outlines the MVP phase of the Ticket Management System. The system meets core business needs by providing secure user authentication, ticket management, commenting, and notifications. Future enhancements may include role-based dashboards, advanced reporting, and external system integrations.
+
